@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-md-8">
+        <h3>Registrar vehiculo</h3>
+        <hr>
+
+        <form (ngSubmit)="guardar()" [formGroup]="registroForm">
+            <div class="form-group">
+              <label>Matricula</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="id"
+                name="id"
+                autocomplete="off"
+              />
+            </div>
+      
+            <div class="form-group mt-3">
+              <label>Turno</label>
+              <select class="form-select" 
+              aria-label="Default select example"
+              formControlName="turno"
+              required
+              >
+                <option value="turno 1">Turno 1</option>
+                <option value="turno 2">Turno 2</option>
+              </select>
+              
+            </div>
+      
+            <div class="form-group mt-3 mb-2">
+              <label>Categoria</label>
+              <select class="form-select" 
+              aria-label="Default select example"
+              formControlName="categoria"
+              required
+              >
+                <option value="A">A: Automovil y buses</option>
+                <option value="B">B: Camiones y gruas</option>
+                <option value="C">C: Tractocamiones</option>
+              </select>
+            </div>
+
+            <div *ngIf="invalido" ><span class="mt-2 text-danger h5" >Todos los campos son requeridos!</span></div>
+      
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-primary w-25 mt-4">
+                Guardar
+              </button>
+            </div>
+          </form>
+
+    </div>
+
+    <div class="col">
+        <h3>Vehiculos registrados</h3>
+        <hr/>
+        <div class="tablecontent">
+            <table class="table content-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Matricula</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Categoria</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of automoviles" >
+                    <td>{{item.id}}</td>
+                    <td>{{item.turno}}</td>
+                    <td>{{item.categoria}}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        </div>
+        
+    </div>
+</div>
+
+<div class="row mt-4">
+    <h3 class="mb-2">Resultados</h3>
+    <hr/>
+    <div class="col">
+        <h3>Turno 1</h3>
+        <hr/>
+        <ul>
+            <li>Total vehiculos: {{t1}}</li>
+            <li>Total recaudo: $ {{t1tot}} </li>
+        </ul>
+    </div>
+    <div class="col">
+        <h3>Turno 2</h3>
+        <hr/>
+        <ul>
+            <li>Total vehiculos: {{t2}}</li>
+            <li>Total recaudo: $ {{t2tot}}</li>
+        </ul>
+    </div>
+    <div class="col-md-5">
+        <h3>Categoria</h3>
+        <hr/>
+        <ul>
+            <li>Total vehiculos A: {{this.A}} | Recaudo: $ {{this.A * 1500}}</li> 
+            <li>Total vehiculos B: {{this.B}} | Recaudo: $ {{this.B * 2100}}</li> 
+            <li>Total vehiculos C: {{this.C}} | Recaudo: $ {{this.C * 2700}}</li> 
+        </ul>
+    </div>
+</div>
